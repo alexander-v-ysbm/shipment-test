@@ -22,6 +22,8 @@ Route::prefix('shipment')->group(function(){
     Route::get('', 'ShipmentController@index')->name('shipment');
     Route::get('add', 'ShipmentController@add')->name('shipment-add');
     Route::post('store', 'ShipmentController@store')->name('shipment-store');
-    Route::get('store', 'ShipmentController@store')->name('shipment-store');
     Route::get('{id}', 'ShipmentController@show')->name('shipment-view');
+    Route::get('edit/{id}', 'ShipmentController@edit')->name('shipment-edit');
+    Route::put('put', 'ShipmentController@put')->name('shipment-put');
+    Route::delete('delete/{id}', 'ShipmentController@delete')->name('shipment-delete');
 });

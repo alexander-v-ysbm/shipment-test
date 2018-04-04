@@ -28,6 +28,24 @@ class ShipmentController extends Controller
     function show($id, Shipment $shipment)
     {
         $data = $shipment->showShipment($id);
-        return view('shipment/view',['shipment'=>$data->data]);
+        return view('shipment/view', ['shipment'=>$data->data]);
+    }
+    function edit($id, Shipment $shipment)
+    {
+        $data = $shipment->showShipment($id);
+        return view('shipment/edit', ['shipment'=>$data->data]);
+    }
+    function put(Request $request, Shipment $shipment)
+    {
+        $name = $request->input('name');
+        $id = $request->input('id');
+        $shipment->putShipment($id, $name);
+        return redirect( 'shipment/'.$id );
+    }
+    function delete(Request $request, Shipment $shipment)
+    {
+        $id = $request->input('id');
+        $shipment->deleteShipment($id);
+        return redirect( 'shipment' );
     }
 }

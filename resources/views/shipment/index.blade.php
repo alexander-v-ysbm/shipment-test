@@ -6,9 +6,11 @@
             <h6>Shipments component</h6>
         </div>
         <div class="col">
-            <a href="{{  route('shipment-add') }}">Add</a>
+            <a class="btn btn-primary" href="{{  route('shipment-add') }}">Add</a>
         </div>
     </div>
     <shipments-index
-            :shipments='{{ json_encode($shipments) }}'></shipments-index>
+            :shipments='{{ json_encode($shipments) }}'
+            :csrf_token='{!! json_encode(csrf_token()) !!}'
+    ></shipments-index>
 @endsection

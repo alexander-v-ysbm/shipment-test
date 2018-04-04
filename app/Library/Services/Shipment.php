@@ -80,5 +80,41 @@ class Shipment
         $data = json_decode($result->getBody());
         return $data;
     }
+    public function putShipment($id, $name)
+    {
+        $this->createToken();
+        $this->token = session('shipment_token');
+        $client = new Client();
+        $result = $client->request(
+            'PUT',
+            $this->shipment_api_url . '/shipment/'.$id,
+            ['headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . $this->token
+            ],
+                'body' => '{"id":"'.$id.'", "name":"'.$name.'"}'
+            ]
+        );
+        return ;
+    }
+    public function deleteShipment($id)
+    {
+        $this->createToken();
+        $this->token = session('shipment_token');
+        $client = new Client();
+        $result = $client->request(
+            'DELETE',
+            $this->shipment_api_url . '/shipment/'.$id,
+            ['headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . $this->token
+            ],
+                'body' => '{"id":"'.$id.'"}'
+            ]
+        );
+
+        dd(json_decode($result->getBody()));
+        return ;
+    }
 
 }
